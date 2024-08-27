@@ -70,13 +70,15 @@ class Window(QWidget) :
         crew = Crew(
             agents = [shopping_agent],
             tasks = [shopping_task],
-            verbose = True
+            verbose = True,
+            iteration_limit=2000,  # 기본값보다 높은 반복 제한 설정
+            time_limit=600  # 기본값보다 긴 시간 제한 설정 (단위: 초)
         )
 
         result = crew.kickoff()
 
-        self.browser.append("user : ", user_question)
-        self.browser.append("chatbot : ", str(result))
+        self.browser.append("user : \n  "+ user_question)
+        self.browser.append("chatbot : \n   "+ str(result))
         self.lineEdit.clear()
 
 app = QApplication(sys.argv)
